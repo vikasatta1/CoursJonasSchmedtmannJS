@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -73,7 +74,7 @@ for (const flight of flights.split('+')) {
 ///////////////////////////////////////
 // Coding Challenge #4
 
-/* 
+/!*
 Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
 
 The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
@@ -100,9 +101,9 @@ HINT 4: This challenge is difficult on purpose, so start watching the solution i
 Afterwards, test with your own test data!
 
 GOOD LUCK 😀
-*/
+*!/
 
-/*
+/!*
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
@@ -120,9 +121,9 @@ document.querySelector('button').addEventListener('click', function () {
     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
   }
 });
-*/
+*!/
 
-/*
+/!*
 ///////////////////////////////////////
 // Working With Strings - Part 2
 
@@ -280,12 +281,12 @@ console.log(new String('jonas'));
 console.log(typeof new String('jonas'));
 
 console.log(typeof new String('jonas').slice(1));
-*/
+*!/
 
 ///////////////////////////////////////
 // Coding Challenge #3
 
-/* 
+/!*
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
@@ -295,7 +296,7 @@ Let's continue with our football betting app! This time, we have a map with a lo
       [FIRST HALF] 17: ⚽️ GOAL
 
 GOOD LUCK 😀
-*/
+*!/
 
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
@@ -311,7 +312,7 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
-/*
+/!*
 // 1.
 const events = [...new Set(gameEvents.values())];
 console.log(events);
@@ -334,9 +335,9 @@ for (const [min, event] of gameEvents) {
   const half = min <= 45 ? 'FIRST' : 'SECOND';
   console.log(`[${half} HALF] ${min}: ${event}`);
 }
-*/
+*!/
 
-/*
+/!*
 ///////////////////////////////////////
 // Maps: Iteration
 const question = new Map([
@@ -442,12 +443,12 @@ console.log(
 );
 
 console.log(new Set('jonasschmedtmann').size);
-*/
+*!/
 
 ///////////////////////////////////////
 // Coding Challenge #2
 
-/* 
+/!*
 Let's continue with our football betting app!
 
 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
@@ -466,7 +467,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
       }
 
 GOOD LUCK 😀
-*/
+*!/
 
 const game = {
   team1: 'Bayern Munich',
@@ -509,7 +510,7 @@ const game = {
   },
 };
 
-/*
+/!*
 // 1.
 for (const [i, player] of game.scored.entries())
   console.log(`Goal ${i + 1}: ${player}`);
@@ -537,9 +538,9 @@ const scorers = {};
 for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
-*/
+*!/
 
-/*
+/!*
 ///////////////////////////////////////
 // Looping Objects: Object Keys, Values, and Entries
 
@@ -611,12 +612,12 @@ for (const [i, el] of menu.entries()) {
 }
 
 // console.log([...menu.entries()]);
-*/
+*!/
 
 ///////////////////////////////////////
 // Coding Challenge #1
 
-/* 
+/!*
 We're building a football betting app (soccer for my American friends 😅)!
 
 Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
@@ -632,9 +633,9 @@ Suppose we get data from a web service about a certain game (below). In this cha
 TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
 
 GOOD LUCK 😀
-*/
+*!/
 
-/*
+/!*
 // 1.
 const [players1, players2] = game.players;
 console.log(players1, players2);
@@ -915,4 +916,5 @@ console.log(i, j, k);
 // Default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+*!/
 */
