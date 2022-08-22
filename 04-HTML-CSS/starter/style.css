@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-image: linear-gradient(#0003c4,#f5465d);
+    font-family: Arial,sans-serif;
+    font-size: 20px;
+    padding: 75px;
+
+}
+h1{
+    font-size:20px;
+    padding-bottom:25px ;
+}
+h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.first{
+    color: white;
+}
+.second{
+  color: #f5465d;
+}
+#your-name{
+    background-color: #753682;
+    color: #0003c4;
+    border:1px solid #5ec576;
+    width: 400px;
+    padding: 25px;
+}
