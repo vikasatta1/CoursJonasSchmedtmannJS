@@ -41,20 +41,7 @@ for(const [i,el]of menu.entries()){
     console.log(`${i +1}: ${el} `)
 }*!/
 
-const openingHours = {
-    thu: {
-        open: 12,
-        close: 22,
-    },
-    fri: {
-        open: 11,
-        close: 23,
-    },
-    sat: {
-        open: 0, // Open 24 hours
-        close: 24,
-    },
-}
+
 
 /////chaining ?
 /!*console.log(restaurant.openingHours?.fri)*!/
@@ -115,16 +102,12 @@ const game = {
 }*/
 /*
 const odds = Object.values(game.odds)
-
 let average = 0
 for(const odd of odds){
     average+=odds
     average/=odds.length
-
 }
 */
-
-
 /*
 let [players1, players2] = game.players
 const [gk, ...fieldPlayers] = players1
@@ -140,18 +123,71 @@ for (let i = 0; i< players.length;i++){
 }
 }
 printGoals('Thiago', 'Coutinho', 'Perisic')*/
-
 /*const orderSet = new Set(['Pasta', 'Pizza', 'Pasta', 'Pizza', "Rissoto"])
 console.log(orderSet)
-
 for (const order of orderSet) {
     console.log(order)
 }*/
-
-const rest = new Map()
+// в сет ключи строки,а в мэп все что хочешь
+/*const rest = new Map()
 rest.set('name','Classico')
 rest.set(1,'Fire')
 console.log(rest)
+const openingHours = {
+    thu: {
+        open: 12,
+        close: 22,
+    },
+    fri: {
+        open: 11,
+        close: 23,
+    },
+    sat: {
+        open: 0, // Open 24 hours
+        close: 24,
+    },
+}
+console.log(openingHours)
+const newMap = new Map(Object.entries(openingHours))
+console.log(newMap)
+const gameEvents = new Map([
+    [17, '⚽ GOAL'],
+    [36, '� Substitution'],
+    [47, '⚽ GOAL'],
+    [61, '� Substitution'],
+    [64, '� Yellow card'],
+    [69, '� Red card'],
+    [70, '� Substitution'],
+    [72, '� Substitution'],
+    [76, '⚽ GOAL'],
+    [80, '⚽ GOAL'],
+    [92, '� Yellow card'],
+]);
+let events =[...new Set( gameEvents.values())]
+console.log(events)
+
+gameEvents.delete(64)*/
+
+
+const chek = (seat) => {
+    let s = seat.slice(-1)
+    if(s === 'B' || s === 'E'){
+        console.log('middle')
+    }else{
+        console.log('lucky')
+    }
+}
+chek('11B')
+
+const chek2 = (seat) => {
+    let s = seat.slice(-1)
+    if(s === 'B' || s === 'E'){
+        console.log('middle')
+    }else{
+        console.log('lucky')
+    }
+}
+chek2('11B')
 
 
 
