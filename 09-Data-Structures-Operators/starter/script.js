@@ -169,6 +169,7 @@ console.log(events)
 gameEvents.delete(64)*/
 
 
+/*
 const chek = (seat) => {
     let s = seat.slice(-1)
     if(s === 'B' || s === 'E'){
@@ -188,20 +189,40 @@ const chek2 = (seat) => {
     }
 }
 chek2('11B')
+*/
 
 
+/*underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure*/
+
+//slice срез
+//split разделить строку по разделителю вернет массив
+//join в строку из массива
+//Метод replace() возвращает новую строку с некоторыми
+// или всеми сопоставлениями с шаблоном, заменёнными на заменитель
+const [firstName, lastName] = 'Vika Morozova'.split(' ')
+console.log(firstName);
+console.log(lastName);
+
+console.log(['MR', firstName, lastName.toUpperCase()].join())
 
 
+document.body.append(document.createElement('textarea'));
 
+document.body.append(document.createElement('button'));
 
-
-
-
-
-
-
-
-
+let num = 1
+document.querySelector('button').addEventListener('click', function () {
+    const text = document.querySelector('textarea').value;
+    const rows = text.split('\n')
+    for (const row of rows) {
+        const [first, second] = row.toLowerCase().trim().split('_')
+        const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`
+    }
+})
 
 
 
