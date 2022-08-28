@@ -61,9 +61,11 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
     containerMovements.innerHTML = ''
-    movements.forEach((el, i) => {
+
+    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements
+    movs.forEach((el, i) => {
         const type = el > 0 ? 'deposit' : 'withdrawal'
         const html = `
    <div class="movements__row">
@@ -158,6 +160,18 @@ btnTransfer.addEventListener('click', function (e) {
     inputTransferTo.value = inputTransferAmount.value = ''
 })
 
+btnLoan.addEventListener('click', function (e) {
+    e.preventDefault()
+
+    const amount = Number(inputLoanAmount.value)
+    if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+        currentAccount.movements.push(amount)
+
+        updateUI(currentAccount)
+    }
+    inputLoanAmount.value = ''
+})
+
 //CLOSE
 btnClose.addEventListener('click', function (e) {
     e.preventDefault()
@@ -172,8 +186,12 @@ btnClose.addEventListener('click', function (e) {
     }
     inputCloseUsername.value = inputClosePin.value = ''
 })
-
-
+let sorted = false
+btnSort.addEventListener('click', function (e) {
+    e.preventDefault()
+    displayMovements(currentAccount.movements, !sorted)
+    sorted = !sorted
+})
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -282,6 +300,19 @@ const totalDepositUSD = movements.filter(mov => mov > 0).map(mov => mov * eurToU
 
 //////FIND возвращает элемент
 //////FINDINDEX возвращает индекс элемента
+/*const bankDeposit = accounts.flatMap(el=> el.movements).filter(el=>el > 0).reduce((a,b)=>a+b)
+const numDeposits1000 = accounts.flatMap(el=> el.movements).filter(el=>el >= 1000).length
+const reduceDeposit1000 = accounts.flatMap(acc=>acc.movements)
+    .reduce((count,cur)=>cur >= 1000? count +1 : count ,0)
+console.log(bankDeposit)
+console.log(numDeposits1000)
+console.log(reduceDeposit1000)*/
+/*const {deposits,withDrawals} = accounts.flatMap(el=> el.movements)
+    .reduce((sums,cur)=>{
+cur > 0 ? sums.deposits +=cur : sums.withDrawals +=cur
+        return sums
+     },{deposits: 0 , withDrawals: 0})*/
+
 
 const dogs = [
     {weight: 22, curFood: 250, owners: ['Alice', 'Bob']},
@@ -290,19 +321,71 @@ const dogs = [
     {weight: 32, curFood: 340, owners: ['Michael']},
 ];
 
-
-dogs.forEach(el => {
-    el.recomend = Math.trunc(el.weight ** 0.75 * 28)
+//1
+dogs.forEach(dog => {
+    dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)
 })
+//2
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'))
+console.log(dogSarah)
+console.log(dogSarah.curFood > dogSarah.recFood ? 'ест много' : "ест мало")
+
+//3
+const EatTooLittle = dogs.filter(dogs => dogs.curFood < dogs.recFood)
+    .map(dog=>dog.owners).flat()
+const EatTooBig = dogs.filter(dogs => dogs.curFood > dogs.recFood)
+    .map(dog=>dog.owners).flat()
+//5
+console.log(dogs.some(dog=>dog.curFood === dog.recFood))
+
+/*console.log(dogs.find(el => el.owners === 'Sarah' ))
+
+console.log(dogs)*/
 
 
+//SOME вернет булево тру если условие совпало с одним эл
+//EVERY  вернет булево тру если все элементы верны условию
+//FLAT
+// const arr = [[1, 2, 3, 4], [6, 7, 9], 7, 8]
+//
+//
+// const arrDeep = [[1, 2, 3, [0, 5], 4], [6, 7, 9], 7, 8]
+//
+//
+// const overalBalance = accounts.map(acc => acc.movements)
+//     .flat()
+//     .reduce((acc, cur) =>
+//         acc + cur, 0)
+// console.log(overalBalance)
+// ////FlatMap
+// const overalBalance2 = accounts.flatMap(acc => acc.movements)
+//     .reduce((acc, cur) =>
+//         acc + cur, 0)
+// console.log(overalBalance2)
+//
+// ////SORT мутирует массив
+//
+//
+// const owner = ['Jonas', 'Zach', 'Adam']
+// owner.sort()
+//
+// console.log(movements.sort((a, b) => a - b))
+// labelBalance.addEventListener('click', function () {
+//     const movementsUI =
+//         Array.from(document.querySelectorAll('.movements__value'))
+// })
 
-
-
-
-
-
-
+//мутирует
+//не мутирует
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
