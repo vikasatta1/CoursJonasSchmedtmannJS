@@ -49,3 +49,8 @@ document.querySelector('.btn--close-cookie').addEventListener('click',
 
 message.style.backgroundColor = '#37383d'
 message.style.width = '120%'
+
+message.style.height =Number.parseFloat(getComputedStyle(message).
+    hight) + 30 + 'px';
+
+doc
