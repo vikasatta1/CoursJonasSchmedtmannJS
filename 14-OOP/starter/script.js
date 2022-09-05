@@ -260,7 +260,7 @@ sarah.calcAge()
 */
 
 
-const Person = function (firstName, birthYear) {
+/*const Person = function (firstName, birthYear) {
   this.firstName = firstName
     this.birthYear = birthYear
  }
@@ -273,7 +273,7 @@ const Person = function (firstName, birthYear) {
       this.course = course
   }
 //без этого калк не вызовется
-  Student.prototype = Object.create(Person.prototype)
+/!*  Student.prototype = Object.create(Person.prototype)*!/
 
 
   Student.prototype.introduce = function (){
@@ -282,20 +282,41 @@ const Person = function (firstName, birthYear) {
 
   const mike = new Student("Mike", 2020, 'Comp')
 mike.introduce()
-mike.calcAge()
+mike.calcAge()*/
 
-Student.prototype = Object.create(Person.prototype)
-
-
-Student.prototype.introduce = function (){
-    console.log(`My name is ${this.firstName} and I study ${this.course}`)
+const Car = function (make,speed){
+    this.make = make
+    this.speed = speed
+}
+Car.prototype.accelerate = function (){
+    this.speed += 10
+    console.log(`${this.speed} km/h`)
+}
+Car.prototype.brake = function(){
+    this.speed -= 5
+    console.log(`${this.speed} km/h`)
 }
 
-const mike = new Student("Mike", 2020, 'Comp')
-mike.introduce()
-mike.calcAge()
+const EV = function (make,speed,charge){
+    Car.call(this,make,speed)
+    this.charge = charge
 
+}
+EV.prototype = Object.create(Car.prototype)
+EV.prototype.chargeBattery = function (chargeTo){
+    this.charge = chargeTo
+}
+EV.prototype.accelerate = function (){
+    this.speed += 20
+    this.charge -=1
+    console.log('Tesla going at 140 km/h, with a charge of 22%')
 
+}
+const tesla = new EV('tesla',120,23)
+console.log(tesla)
+tesla.chargeBattery(50)
+console.log(tesla)
+tesla.brake()
 
 
 
