@@ -284,7 +284,7 @@ sarah.calcAge()
 mike.introduce()
 mike.calcAge()*/
 
-const Car = function (make,speed){
+/*const Car = function (make,speed){
     this.make = make
     this.speed = speed
 }
@@ -308,7 +308,7 @@ EV.prototype.chargeBattery = function (chargeTo){
 }
 EV.prototype.accelerate = function (){
     this.speed += 20
-    this.charge -=1
+    this.charge--
     console.log('Tesla going at 140 km/h, with a charge of 22%')
 
 }
@@ -316,7 +316,205 @@ const tesla = new EV('tesla',120,23)
 console.log(tesla)
 tesla.chargeBattery(50)
 console.log(tesla)
-tesla.brake()
+tesla.brake()*/
+
+
+class Person {
+    constructor(fullName, birthYear) {
+        this.fullName = fullName
+        this.birthYear = birthYear
+    }
+
+    calcAge() {
+        console.log(2037 - this.birthYear)
+    }
+
+    greet() {
+        console.log(`Hey ${this.fullName}`)
+    }
+
+    get age() {
+        return 2037 - this.birthYear
+    }
+
+    set fullName(name) {
+        if (name.includes(' ')) {
+            this._fullName = name
+        } else {
+            alert(`${name} is not a full name!`)
+        }
+    }
+
+    get fullName() {
+        return this._fullName
+    }
+
+    static hey() {
+        console.log('Hey there')
+
+    }
+
+}
+
+
+/*
+//НАСИЛЕДОВАНИЕ В КЛАССАХ
+class Student extends Person{
+ constructor(fullName,birthYear,course) {
+     super(fullName,birthYear);
+     this.course = course
+ }
+ introduce(){
+     console.log(`My name is ${this.fullName} and I study ${this.course}`)
+ }
+ calcAge() {
+     console.log(2022 - this.birthYear)
+ }
+
+    // ЕСЛИ БЫ НАМ НЕ НУЖЕН БЫЛ КОНСТРУКТОР, ТО МЫ БЫ ВЫЗВАЛИ ТОЛЬКО СУПЕР ДЛЯ НАССЛЕДОВАНИЯ
+ //    super(fullName,birthYear);
+
+}
+const jessica = new Student("Jessica Davis", 1999, 'cd')
+console.log(jessica)
+jessica.introduce()
+jessica.calcAge()*/
+
+
+// const PersonProto = {
+//     calcAge() {
+//         console.log(2037 - this.birthYear)
+//     },
+//     init(firstName, birthYear) {
+//         this.firstName = firstName
+//         this.birthYear = birthYear
+//     }
+// }
+//
+// const steven = Object.create(PersonProto)
+//
+//
+// const StudentProto = Object.create(PersonProto)
+// StudentProto.init = function (firstName,birthYear,course){
+//     PersonProto.init.call(this, firstName,birthYear)
+//     this.course = course
+// }
+// StudentProto.introduce = function (){
+//     console.log(`My name is ${this.firstName} and I study ${this.course}`)
+// }
+// const jay = Object.create(StudentProto)
+// jay.init("Jay",2010,'Comouter')
+// console.log(jay)
+// jay.introduce()
+
+class Account {
+    //public fields
+    locale = navigator.language;
+
+    //private fields
+    #movements = [];
+    #pin
+
+    constructor(owner, currency, pin) {
+        this.owner = owner
+        this.currency = currency
+        this.#pin = pin
+        console.log(owner)
+    }
+
+    getMovements() {
+        return this.#movements
+    }
+
+    deposit(val) {
+        this.#movements.push(val)
+        return this
+    }
+
+    withdraw(val) {
+        this.deposit(-val)
+        return this
+    }
+
+
+
+    requestLoan(val) {
+        if (this._approveLoan(val)) {
+            this.deposit(val)
+            console.log(`Loan approved`)
+            return this
+        }
+    }
+    //private methods
+    _approveLoan(val) {
+        return true
+    }
+}
+
+const account1 = new Account('Jonas', 'EUR', 1111)
+console.log(account1)
+
+//chaining
+account1.deposit(300).deposit(500).withdraw(35)
+    .requestLoan(25000).withdraw(4000)
+
+console.log(account1.getMovements())
+
+
+
+class Car {
+    constructor(make, speed) {
+        this.make = make
+        this.speed = speed
+    }
+    accelerate() {
+        this.speed += 10
+        console.log(`${this.speed} km/h`)
+    }
+    brake() {
+        this.speed -= 5
+        console.log(`${this.speed} km/h`)
+    }
+    get speedUS() {
+        return  this.speed / 1.6
+    }
+    set speedUS(mil) {
+        this.speed = mil * 1.6
+    }
+}
+
+
+class EV extends Car {
+    #charge
+    constructor(make,speed,charge){
+        super(make,speed);
+        this.#charge = charge
+    }
+    chargeBattery(chargeTo){
+        this.#charge = chargeTo
+        return this
+    }
+    accelerate = function (){
+        this.speed += 20
+        this.#charge--
+        console.log('Tesla going at 140 km/h, with a charge of 22%')
+        return this
+    }
+}
+const rivian = new EV('Rivian',120,23)
+console.log(rivian)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
