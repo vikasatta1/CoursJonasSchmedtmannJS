@@ -112,8 +112,8 @@ let request =  fetch(`https://restcountries.com/v3.1/name/portugal`);
 request.then(response => response.json())
     .then(res=> console.log(res ))
 */
-let  getJSON = (url,errorMessage='Something went wrong') => {
-  return   fetch(url)
+let getJSON = (url, errorMessage = 'Something went wrong') => {
+    return fetch(url)
         .then(res => {
             if (!res.ok)
                 throw new Error(`${errorMessage} (${res.status})`)
@@ -122,13 +122,13 @@ let  getJSON = (url,errorMessage='Something went wrong') => {
 }
 
 const getCountryData = (country) => {
-    getJSON(`https://restcountries.com/v3.1/name/${country}`,'Country not found')
+    getJSON(`https://restcountries.com/v3.1/name/${country}`, 'Country not found')
         .then(data => {
             renderCountry(data[0])
             const neighbour = data[0].borders[0]
             console.log(neighbour)
             if (!neighbour) throw new Error('No neighbour found')
-            return getJSON(`https://restcountries.com/v3.1/alpha/${neighbour}`,'Country not found')
+            return getJSON(`https://restcountries.com/v3.1/alpha/${neighbour}`, 'Country not found')
         })
         .then(data => {
             console.log(data)
@@ -150,7 +150,6 @@ btn.addEventListener('click', function () {
 /*TEST COORDINATES 1: 52.508, 13.381 (Latitude, Longitude)
 TEST COORDINATES 2: 19.037, 72.873
 TEST COORDINATES 2: -33.933, 18.474*/
-
 
 
 /*
@@ -190,3 +189,101 @@ whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
 */
+
+/*const pr = new Promise((res, rej) => {
+    if (Math.random() >= 0.5) {
+        res('dkdk')
+    } else {
+        rej('errrrrror')
+    }
+})
+pr.then(data => console.log(data))
+    .catch(err => console.log(err))
+
+const wait = (seconds) => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res()
+            console.log('res')
+        }, seconds*1000)
+    })
+}
+
+wait(2).then(()=>{
+    console.log('I waited 2 sec')
+    return wait(1)
+})
+    .then(()=>console.log('I waited 1 sec'))*/
+
+
+/*
+const getPosition = () => {
+   return  new Promise((res,rej)=> {
+      navigator.geolocation.getCurrentPosition(position=>res(position))
+
+   })
+}
+
+getPosition()
+.then((data)=>{
+    console.log(data.coords)
+})
+    .catch(err=> console.log(err ))
+*/
+/*const wait = function (seconds) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imgPath) {
+    return new Promise(function (resolve, reject) {
+        const img = document.createElement('img');
+        img.src = imgPath;
+
+        img.addEventListener('load', function () {
+            imgContainer.append(img);
+            resolve(img);
+        });
+
+        img.addEventListener('error', function () {
+            reject(new Error('Image not found'));
+        });
+    });
+};
+
+let currentImg;
+
+createImage('img/img-1.jpg')
+    .then(img => {
+        currentImg = img;
+        console.log('Image 1 loaded');
+        return wait(2);
+    })
+    .then(() => {
+        currentImg.style.display = 'none';
+        return createImage('img/img-2.jpg');
+    })
+    .then(img => {
+        currentImg = img;
+        console.log('Image 2 loaded');
+        return wait(2);
+    })
+    .then(() => {
+        currentImg.style.display = 'none';
+    })
+    .catch(err => console.error(err));*/
+
+///async await
+
+const whereAmI = async function (country) {
+ const res =  await fetch(`https://restcountries.com/v3.1/name/${country}`)
+    console.log(res)
+    return res
+}
+whereAmI('portugal').then((res)=>res.json())
+    .then(res=> console.log(res))
+
+
